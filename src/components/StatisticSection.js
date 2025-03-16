@@ -1,43 +1,60 @@
 import React from "react";
+import bgImage from "../assets/bg8.png";
 
 function StatisticSection() {
   return (
-    <div id="services" className="mt-9">
-      <h1 class="xl:text-5xl md:text-4xl text-2xl font-semibold leading-tight text-center text-gray-800 sm:mb-0 mb-12">
-        Our Service <br class="md:block hidden" />
+    <div id="services" className="mt-9 px-4 sm:px-8">
+      {/* Title */}
+      <h1 className="xl:text-5xl md:text-4xl text-2xl font-semibold leading-tight text-center text-yellow-500">
+        Our Services
       </h1>
-      <div class="md:mt-7 mt-2 relative sm:flex items-center justify-center">
-        <img
-          src={require("../assets/bg8.png")}
-          alt="world map image"
-          class="w-full max-h-screen object-cover  sm:block hidden"
-        />
-        <img
-          src={require("../assets/bg8.png")}
-          alt="mobile-image"
-          class="sm:hidden -mt-10 block w-full h-80 object-cover absolute z-0"
-        />
 
-        <div class="shadow-lg xl:p-6 p-4 sm:w-auto w-full bg-white sm:absolute relative z-20 sm:mt-0 mt-4 left-0 xl:ml-56 sm:ml-12 xl:-mt-40 sm:-mt-12">
-          <p class="text-3xl font-semibold text-gray-800">5+</p>
-          <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">Projects</p>
+      {/* Background Image */}
+      <div className="relative mt-5 flex justify-center">
+        <img
+          src={bgImage}
+          alt="World map background"
+          className="w-full max-h-screen object-cover hidden sm:block"
+        />
+        <img
+          src={bgImage}
+          alt="Mobile background"
+          className="sm:hidden block w-full h-80 object-cover absolute z-0"
+        />
+      </div>
+
+      {/* Statistics */}
+      <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10 sm:mt-14">
+        {/* Projects Completed */}
+        <div className="shadow-lg p-6 bg-white rounded-lg flex flex-col items-center z-20">
+          <p className="text-4xl font-semibold text-gray-800">20+</p>
+          <p className="text-base text-gray-600 mt-2">Projects Completed</p>
         </div>
-        <div class="shadow-lg xl:p-6 p-4 sm:w-auto w-full bg-white sm:absolute relative z-20 sm:mt-0 mt-4 left-0 xl:ml-56 sm:ml-12 xl:-mt-40 sm:-mt-12">
-          <p class="text-3xl font-semibold text-gray-800">1100+</p>
-          <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">Hours</p>
+
+        {/* Hours of Work */}
+        <div className="shadow-lg p-6 bg-white rounded-lg flex flex-col items-center z-20">
+          <p className="text-4xl font-semibold text-gray-800">1100+</p>
+          <p className="text-base text-gray-600 mt-2">Development Hours</p>
         </div>
-        <div class="shadow-lg xl:p-6 p-4  sm:w-auto w-full bg-white sm:absolute relative z-20 sm:mt-0 mt-4 xl:mt-80 sm:mt-56 xl:-ml-0 sm:-ml-12">
-          <p class="text-3xl font-semibold text-gray-800">12+</p>
-          <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">
-            Indian Cities Footprint
-          </p>
+
+        {/* Indian Cities Footprint */}
+        <div className="shadow-lg p-6 bg-white rounded-lg flex flex-col items-center z-20">
+          <p className="text-4xl font-semibold text-gray-800">4+</p>
+          <p className="text-base text-gray-600 mt-2">Cities Across India</p>
         </div>
-        <div class="shadow-lg xl:p-6 p-4 sm:w-auto w-full bg-white sm:absolute relative z-20 md:mt-0 sm:-mt-5 mt-4 right-0 xl:mr-56 sm:mr-24">
-          <p class="text-3xl font-semibold text-gray-800">5+</p>
-          <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">
-            Service Domains
-          </p>
+
+        {/* Service Domains */}
+        <div className="shadow-lg p-6 bg-white rounded-lg flex flex-col items-center z-20">
+          <p className="text-4xl font-semibold text-gray-800">5+</p>
+          <p className="text-base text-gray-600 mt-2">Service Domains</p>
         </div>
+
+        {/* Indian Market Expansion */}
+        <div className="shadow-lg p-6 bg-white rounded-lg flex flex-col items-center z-20">
+          <p className="text-4xl font-semibold text-gray-800">100+</p>
+          <p className="text-base text-gray-600 mt-2">Indian Businesses Served</p>
+        </div>
+
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { AiFillUpSquare } from 'react-icons/ai';
 
 function ScrollTop() {
   const scrollToTop = () => {
@@ -18,7 +17,6 @@ function ScrollTop() {
         alt="logo"
       /> 
       </Link>
-        {/* <AiFillUpSquare className="h-12 w-12 text-blue-500" /> */}
       
     </div>
   );

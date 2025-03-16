@@ -7,117 +7,63 @@ function AboutUsSection() {
   const rightRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (leftRef.current) {
-        leftRef.current.style.animation = "leftMotion 2s linear forwards";
-      }
-      if (rightRef.current) {
-        rightRef.current.style.animation = "rightMotion 2s linear forwards";
-      }
+    const observerOptions = { threshold: 0.2 };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-in");
+        }
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    if (leftRef.current) observer.observe(leftRef.current);
+    if (rightRef.current) observer.observe(rightRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div id="about" className=" bg-slate-300 flex  justify-center items-center gap-2 h-screen">
+    <div id="about" className="bg-slate-300 flex flex-col md:flex-row justify-center items-center gap-10 h-auto md:h-screen px-6 md:px-16 py-12">
       <style>
         {`
-          @keyframes leftMotion {
-            from {
-              transform: translateX(-100%);
-            }
-            to {
-              transform: translateX(0%);
-            }
+          .animate-in {
+            animation: fadeIn 1.2s ease-in-out forwards;
           }
-
-          @keyframes rightMotion {
+          @keyframes fadeIn {
             from {
-              transform: translateX(100%);
+              opacity: 0;
+              transform: translateY(50px);
             }
             to {
-              transform: translateX(0%);
+              opacity: 1;
+              transform: translateY(0);
             }
           }
         `}
       </style>
 
-      <div className="w-[40%] flex justify-center items-center" ref={leftRef}>
-        <div className="p-6 rounded-lg">
-          <img
-            src={aboutSectionImg}
-            alt="About Section"
-            className="mt-4 rounded-lg object-contain"
-          />
-        </div>
+      {/* Left Section (Image) */}
+      <div className="w-full md:w-[40%] flex justify-center items-center" ref={leftRef}>
+        <img src={aboutSectionImg} alt="About Section" className="mt-4 rounded-lg object-contain max-w-[90%] md:max-w-full" />
       </div>
 
-      <div className="w-[50%] flex justify-center items-center" ref={rightRef}>
-        <div className="p-6 rounded-lg shadow-md flex flex-col gap-5">
-          <h1 className="text-4xl text-black font-bold">ABOUT US</h1>
-          <p className="text-black">
-            We're Developers, We just happen to be doing Development. D&W tech
-            is the fruit of a handful of engineers and creative artists based in
-            India coming together to pursue a hunch they had: the world could
-            present thoughts and ideas with more clarity, flair, and empathy.
-            <br />
-            <ul class="max-w-md space-y-1  list-inside ">
-              <li class="flex items-center">
-                <svg
-                  class="w-8 h-7 me-2 text-[#FFA808] flex-shrink-0"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                </svg>
-                Inspired by the Innovations
-              </li>
-              <li class="flex items-center">
-                <svg
-                  class="w-9 h-7 me-2 text-[#FFA808] flex-shrink-0"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                </svg>
-                Experienced team with Tech, business, and language expertise
-              </li>
-              <li class="flex items-center">
-                <svg
-                  class="w-9 h-7 me-2 text-[#FFA808] flex-shrink-0"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                </svg>
-                Personalized service going beyond the call of duty
-              </li>
-              <li class="flex items-center">
-                <svg
-                  class="w-9 h-7 me-2   text-[#FFA808] flex-shrink-0"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                </svg>
-                Presently diversifying into branding plus consultancy services
-              </li>
-            </ul>
+      {/* Right Section (Text) */}
+      <div className="w-full md:w-[50%] flex justify-center items-center" ref={rightRef}>
+        <div className="p-6 md:p-8 rounded-lg shadow-md flex flex-col gap-5 bg-white">
+          <h1 className="text-4xl text-yellow-500 font-bold">ABOUT US</h1>
+          <p className="text-gray-700">
+            We're Developers, We just happen to be doing Development. D&W Tech is the fruit of a handful of engineers and creative artists based in India, coming together to present thoughts and ideas with more clarity, flair, and empathy.
           </p>
-          <button className=" py-3 mt-4  px-5 rounded-xl bg-[#FFA808] hover:bg-slate-300 transition-all duration-300 ease-linear hover:text-[#FFA808] w-fit">
+          <ul className="max-w-md space-y-3 list-inside">
+            <ListItem text="Inspired by the Innovations" />
+            <ListItem text="Experienced team with Tech, business, and language expertise" />
+            <ListItem text="Personalized service going beyond the call of duty" />
+            <ListItem text="Presently diversifying into branding plus consultancy services" />
+          </ul>
+          <button className="py-3 mt-4 px-6 rounded-xl bg-[#FFA808] hover:bg-yellow-600 transition-all duration-300 ease-in-out hover:text-white self-start">
             Learn More
           </button>
         </div>
@@ -125,5 +71,24 @@ function AboutUsSection() {
     </div>
   );
 }
+
+const ListItem = ({ text }) => (
+  <li className="flex items-center">
+    <CheckIcon />
+    {text}
+  </li>
+);
+
+const CheckIcon = () => (
+  <svg
+    className="w-8 h-7 me-2 text-[#FFA808] flex-shrink-0"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+  </svg>
+);
 
 export default AboutUsSection;
